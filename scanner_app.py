@@ -138,7 +138,12 @@ st.markdown("""
 
 # ── API Key setup — safe, from environment or sidebar input ──────────────────
 # First try environment variable (best practice)
-api_key = os.environ.get("GEMINI_API_KEY", "")
+# Try Streamlit secrets first (when deployed on Streamlit Cloud)
+# Fall back to environment variable (when running locally)
+try:
+    api_key = st.secrets["GEMINI_API_KEY"]
+except (KeyError, FileNotFoundError):
+    api_key = os.environ.get("GEMINI_API_KEY", "")
 
 # If not set, let the user enter it in the sidebar
 if not api_key:
