@@ -5,8 +5,6 @@ from PIL import Image
 import io
 import json
 import os
-from dotenv import load_dotenv
-load_dotenv()
 
 # ── Page config — called ONCE at the very top, never again ───────────────────
 st.set_page_config(
